@@ -1,0 +1,7 @@
+Dockerfile
+.env
+.env.local
+.git
+.vscode
+node_modules
+dist
