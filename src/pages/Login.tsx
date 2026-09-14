@@ -4,8 +4,7 @@ import { login } from "../api";
 import { setToken } from "../auth";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [apiKey, setApiKey] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -13,7 +12,7 @@ export default function Login() {
     e.preventDefault();
     setError("");
     try {
-      const { token } = await login(username, password);
+      const { token } = await login(apiKey);
       setToken(token);
       navigate("/");
     } catch (err) {
@@ -27,15 +26,11 @@ export default function Login() {
         <h1>Manga Tracker Admin</h1>
         {error && <p className="error">{error}</p>}
         <label>
-          Username
-          <input value={username} onChange={(e) => setUsername(e.target.value)} required />
-        </label>
-        <label>
-          Password
+          API key
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={apiKey}
+            onChange={(e) => setApiKey(e.target.value)}
             required
           />
         </label>

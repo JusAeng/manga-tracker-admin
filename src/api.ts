@@ -51,11 +51,11 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   return text ? (JSON.parse(text) as T) : (undefined as T);
 }
 
-export async function login(username: string, password: string): Promise<{ token: string }> {
+export async function login(apiKey: string): Promise<{ token: string }> {
   const res = await fetch(`${API_BASE_URL}/auth/admin`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }),
+    body: JSON.stringify({ apiKey }),
   });
   if (!res.ok) throw new Error((await res.text()) || "Login failed");
   return res.json();
